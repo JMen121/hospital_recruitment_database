@@ -11,9 +11,25 @@ create database hospital_recruitment;
 use hospital_recruitment;
 
 create table Hospital(
-Hospital_id Integer Not Null,
-Hospital_Name varchar(255) Not null,
-Location varChar(255) Not null,
+Hospital_id Integer Not Null Primary Key,
+Name Varchar(255) Not null,
+Address VarChar(255) Not null,
+phone_number Integer Not Null
 );
+
+-- Renamed Hospital to Hospitals because there are many hospitals
+alter table Hospital rename Hospitals;
+
+
+-- create table Departments(
+-- Department_id Integer Not Null Primary Key,
+-- name Varchar(155) Not null,
+-- phone_number Integer,
+-- Foreign Key (Hospital_id) References Hospital (Hospital_id)
+
+
+
+-- );
+
 -- FirstName varchar(50) NOT NULL,
 -- LastName varchar(50) NOT NULL
