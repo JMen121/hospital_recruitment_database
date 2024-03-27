@@ -16,9 +16,6 @@ Address VarChar(255) Not null,
 phone_number Integer Not Null
 );
 
--- Renamed Hospital to Hospitals because there are many hospitals
-alter table Hospital rename Hospitals;
-
 -- Table for Departments
 create table Departments(
 Department_id Integer Not Null Primary Key,
@@ -45,3 +42,28 @@ Foreign Key (Department_id) References Departments (Department_id),
 Foreign Key (Hospital_id) References Hospitals (Hospital_id)
 );
 
+alter table Hospital rename Hospitals;
+-- Need another foreign key staff_schedule
+--  Need to put all the primary keys
+
+
+-- Table for Shift_type
+create table Shift_type(
+Shift_type_id Integer Not Null,
+name varchar(100),
+Start_time time,
+End_time time,staff_membersshift_typehospitalsshift_typestaff_membershospitals
+Hospital_id Integer Not Null,
+Foreign Key (Hospital_id) References Hospitals (Hospital_id)
+); 
+
+-- Table for Staff_Schedule
+create table Staff_schedule(
+Staff_schedule_id Integer Not Null,
+Staff_id Integer Not Null,
+Shift_type_id Integer Not Null,
+Hours_worked decimal,
+Shift_Date Date,
+Foreign Key (Shift_type_id) References Shift_type(Shift_type_id),
+Foreign Key (Staff_id) References Staff_Members(Staff_id)
+);
