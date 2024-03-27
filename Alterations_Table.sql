@@ -1,20 +1,20 @@
--- Changes made whilst editing table
 
--- Renamed Hospital to Hospitals because there are many hospitals
-alter table Hospital rename Hospitals;
+alter Table Department
+modify column phone_number varchar(20);
 
--- Change data type in Hospitals table
-ALTER TABLE Hospitals MODIFY Phone_number VARCHAR(20) NOT NULL;
+-- If I need to drop tabales for any reason 
+drop table hospital;
+drop table department;
+drop table staff_member;
+drop table shift_type;
+drop table staff_schedule;
 
--- Change data type in Departments table
-ALTER TABLE Departments MODIFY Phone_number VARCHAR(20);
-
--- Change data type in Staff_Members table
-ALTER TABLE Staff_Members MODIFY Phone_number VARCHAR(20) NOT NULL;
-
-
--- Add foreign key constraint in Staff_Members table
-ALTER TABLE Staff_Members ADD CONSTRAINT fk_hospital_id FOREIGN KEY (Hospital_id) REFERENCES Hospitals(Hospital_id);
-
--- Add foreign key constraint in Shift_type table
-ALTER TABLE Shift_type ADD CONSTRAINT fk_hospital_id_shift FOREIGN KEY (Hospital_id) REFERENCES Hospitals(Hospital_id);
+-- What I have done so far
+/* Create a database with at least 3 tables with several columns, use good naming conventions
+Link tables using primary and foreign keys effectively
++ Populate the database with at least 8 rows of mock data per table to show use of DML
+commands. The data does not need to be real or accurate.
+Use at least 3 different data types while creating tables
++ Use at least 2 constraints while creating tables, not including primary key or foreign key YES
++ Use at least 3 queries to insert data
+-- */
