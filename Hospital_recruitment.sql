@@ -80,9 +80,31 @@ Values('Cardiology','9876543210', '1'),
 	 ('Orthopedics', '0987654321', 1),
 	 ('Neurology', '02055511122', 6),
      ('Pediatrics','0799998887', 6);
-	
+     
+-- Inserting Data into Departments without phone number
  Insert into Department ( name, Hospital_id)
- Values('Gynecology',1),
+ Values
+       ('Gynecology',1),
 	   ('Dermatology',6),
 	   ('Oncology', 7),
        ('A & E', 7);
+      
+-- Inserting Data into Staff_member
+ Insert into Staff_member ( FirstName, LastName, phone_number, Email_address, age, Role, clothes_size, department_id,  Hospital_id)
+ VALUES
+('John', 'Doe', '1234567890', 'john.doe@gmail.com', 30, 'Doctor', 'M', 11, 1),
+('Jane', 'Smith', '9876543210', 'jane.smith@gmail.com', 35, 'Nurse', 'XL', 5, 1),
+('Michael', 'Johnson', '5551112222', 'michael.johnson@yahoo.com', 28, 'Surgeon', 'L', 6, 6),
+('Emily', 'Williams', '9998887777', 'emily.williams@yahoo.com', 25, 'Pediatrician', 'S', 7, 6),
+('David', 'Brown', '1234567890', 'david.brown@gmail.com', 40, 'Anesthesiologist', 'XL', 8, 7),
+('Sarah', 'Taylor', '9876543210', 'sarah.taylor@yahoo.com', 32, 'Physician Assistant', 'M', 7, 7),
+('Matthew', 'Martinez', '5551112222', 'matthew.martinez@gmail.com', 29, 'Surgeon', 'M', 6, 6),
+('Robert', 'Williams', '9876543210', 'robert.williams@gmail.com', 38, 'Nurse', 'L', 8, 1), 
+('Emma', 'Brown', '5551112222', 'emma.brown@yahoo.com', 26, 'Cleaner', 'S', 9, 7),
+('William', 'Jones', '9998887777', 'william.jones@yahoo.com', 31, 'Psychiatrist', 'XL', 10, 7);
+
+-- Inserting Data into Staff_member without phone number
+ Insert into Staff_member ( FirstName, LastName, age, Role, clothes_size, department_id,  Hospital_id)
+ VALUES
+ ('Jessica', 'Anderson', 'jessica.anderson@yahoo.com', 27, 'Cardiologist', 'S', 5, 6),
+ ('Alice', 'Johnson', 'alice.johnson@gmail.com', 33, 'Neurologist', 'M', 12, 1);

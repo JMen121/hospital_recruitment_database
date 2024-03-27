@@ -1,8 +1,12 @@
-
+-- Used to Alter the phone number int was not working 
 alter Table Department
 modify column phone_number varchar(20);
 
--- If I need to drop tabales for any reason 
+-- Used to Alter the phone number int was not working 
+alter Table staff_member
+modify column phone_number varchar(20);
+
+-- If I need to drop tables for any reason 
 drop table hospital;
 drop table department;
 drop table staff_member;
@@ -18,3 +22,4 @@ Use at least 3 different data types while creating tables
 + Use at least 2 constraints while creating tables, not including primary key or foreign key YES
 + Use at least 3 queries to insert data
 -- */
+
