@@ -108,3 +108,21 @@ Values('Cardiology','9876543210', '1'),
  VALUES
  ('Jessica', 'Anderson', 'jessica.anderson@yahoo.com', 27, 'Cardiologist', 'S', 5, 6),
  ('Alice', 'Johnson', 'alice.johnson@gmail.com', 33, 'Neurologist', 'M', 12, 1);
+ 
+-- Update the professions
+ update Staff_member
+ set role = 'Nurse'
+ Where staff_id IN (15,20);
+ 
+--  Insert into Shift_type ( name, Start_time, End_time, Hospital_id)
+ Insert into Shift_type ( name, Start_time, End_time, Hospital_id)
+ VALUES
+('Early Shift', '07:45:00', '16:15:00',1 ),
+('Early Shift', '07:45:00', '16:15:00', 6 ),
+('Early Shift', '07:45:00', '16:15:00', 7 ),
+('Night Shift', '22:45:00', '08:45:00', 1 ),
+('Night Shift', '22:45:00', '08:45:00', 6 ),
+('Night Shift', '22:45:00', '08:45:00', 7 ),
+('Late Shift', '15:15:00',  '23:45:00', 1 ),
+('Late Shift', '15:15:00',  '23:45:00', 6 ),
+('Late Shift', '15:15:00',  '23:45:00', 7 )
