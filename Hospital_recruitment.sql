@@ -63,6 +63,10 @@ Foreign Key (Shift_type_id) References Shift_type(Shift_type_id),
 Foreign Key (Staff_id) References Staff_Member(Staff_id)
 );
 
+-- Had to alter the table in order for the decimals to appear on the table
+Alter Table staff_schedule 
+Modify Column hours_worked decimal (5,2);
+
 
 -- Inserting into Hospital 
 
@@ -163,5 +167,5 @@ VALUES
 (8.5, '2024-03-27', 24, 8),
 (10.0, '2024-03-27', 16, 6);
 
-
--- delete from staff_schedule;(had to delete the info in staff schedule as I had made a decimal mistake)
+-- had to delete the info in staff schedule as I had made a decimal mistake
+ delete from staff_schedule;
