@@ -1,100 +1,99 @@
-
 -- The Scenario
 -- This is a hospital recruitment database of a local trust, consisting of 3 hospitals(if I have time). 
 -- This will be focusing specifically on the Staff Members, Department, Shift-Time, Shift Schedule and Hospital(if i have time)
 -- One hospital can have many departments
 
-create database hospital_recruitment;
+CREATE DATABASE hospital_recruitment;
 
-use hospital_recruitment;
+USE hospital_recruitment;
 
 -- Table for Hospital
-create table Hospital(
-Hospital_id Integer Auto_increment Primary Key,
-Name Varchar(255) Not null,
-Address VarChar(255) Not null,
-phone_number Integer Not Null
+CREATE TABLE Hospital(
+Hospital_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(255) NOT NULL,
+Address VARCHAR(255) NOT NULL,
+phone_number INTEGER NOT NULL
 );
 
 -- Table for Department
-create table Department(
-Department_id Integer Auto_increment Primary Key,
-Name Varchar(155) Not null,
-Phone_number Integer,
-Hospital_id Integer Not Null,
-Foreign Key (Hospital_id) References Hospital (Hospital_id),
-Unique (Phone_number)
+CREATE TABLE Department(
+Department_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(155) NOT NULL,
+Phone_number INTEGER,
+Hospital_id INTEGER NOT NULL,
+FOREIGN KEY (Hospital_id) REFERENCES Hospital (Hospital_id),
+UNIQUE (Phone_number)
 );
 
 -- Table for Staff members 
-create table Staff_Member(
-Staff_id Integer Auto_increment Primary key,
-FirstName varchar(50) NOT NULL,
-LastName varchar(50) NOT NULL,
-Phone_number Integer Not Null, 
-Email_address VarChar(255),
-Age int not null check (age>=18),
-Role varchar(155),
-Clothes_size varchar(10),
-Department_id Integer Not Null,
-Hospital_id Integer Not Null,
-Foreign Key (Department_id) References Department (Department_id),
-Foreign Key (Hospital_id) References Hospital (Hospital_id)
+CREATE TABLE Staff_Member(
+Staff_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Phone_number INTEGER NOT NULL, 
+Email_address VARCHAR(255),
+Age INT NOT NULL CHECK (age>=18),
+Role VARCHAR(155),
+Clothes_size VARCHAR(10),
+Department_id INTEGER NOT NULL,
+Hospital_id INTEGER NOT NULL,
+FOREIGN KEY (Department_id) REFERENCES Department (Department_id),
+FOREIGN KEY (Hospital_id) REFERENCES Hospital (Hospital_id)
 );
 
 -- Table for Shift_type
-create table Shift_type(
-Shift_type_id Integer Auto_increment Primary Key,
-name varchar(100),
-Start_time time,
-End_time time,
-Hospital_id Integer Not Null,
-Foreign Key (Hospital_id) References Hospital (Hospital_id)
+CREATE TABLE Shift_type(
+Shift_type_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+Start_time TIME,
+End_time TIME,
+Hospital_id INTEGER NOT NULL,
+FOREIGN KEY (Hospital_id) REFERENCES Hospital (Hospital_id)
 ); 
 
 -- Table for Staff_Schedule
-create table Staff_schedule(
-Staff_schedule_id Integer Auto_increment Primary Key,
-Staff_id Integer Not Null,
-Shift_type_id Integer Not Null,
-Hours_worked decimal,
-Shift_Date Date,
-Foreign Key (Shift_type_id) References Shift_type(Shift_type_id),
-Foreign Key (Staff_id) References Staff_Member(Staff_id)
+CREATE TABLE Staff_schedule(
+Staff_schedule_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+Staff_id INTEGER NOT NULL,
+Shift_type_id INTEGER NOT NULL,
+Hours_worked DECIMAL,
+Shift_Date DATE,
+FOREIGN KEY (Shift_type_id) REFERENCES Shift_type(Shift_type_id),
+FOREIGN KEY (Staff_id) REFERENCES Staff_Member(Staff_id)
 );
 
 -- Had to alter the table in order for the decimals to appear on the table
-Alter Table staff_schedule 
-Modify Column hours_worked decimal (5,2);
+ALTER TABLE staff_schedule 
+MODIFY COLUMN hours_worked DECIMAL (5,2);
 
 
 -- Inserting into Hospital 
 
-Insert into Hospital ( name, address, phone_number)
-Values('Highlands Medical','5 Market Pl', '01844205137');
+INSERT INTO Hospital ( name, address, phone_number)
+VALUES('Highlands Medical','5 Market Pl', '01844205137');
 
-Insert into Hospital ( name, address, phone_number)
-Values('Good Health Hospital','8 Randolph Pl', '02099205137'),
+INSERT INTO Hospital ( name, address, phone_number)
+VALUES('Good Health Hospital','8 Randolph Pl', '02099205137'),
 	  ('Prayer And Protection Hospital','26 Picaddily Pl','01944205137');
       
       
 -- Inserting Data into Departments
- Insert into Department ( name, phone_number, Hospital_id)
-Values('Cardiology','9876543210', '1'),
+ INSERT INTO Department ( name, phone_number, Hospital_id)
+VALUES('Cardiology','9876543210', '1'),
 	 ('Orthopedics', '0987654321', 1),
 	 ('Neurology', '02055511122', 6),
      ('Pediatrics','0799998887', 6);
      
 -- Inserting Data into Departments without phone number
- Insert into Department ( name, Hospital_id)
- Values
+ INSERT INTO Department ( name, Hospital_id)
+ VALUES
        ('Gynecology',1),
 	   ('Dermatology',6),
 	   ('Oncology', 7),
        ('A & E', 7);
       
 -- Inserting Data into Staff_member
- Insert into Staff_member ( FirstName, LastName, phone_number, Email_address, age, Role, clothes_size, department_id,  Hospital_id)
+ INSERT INTO Staff_member ( FirstName, LastName, phone_number, Email_address, age, Role, clothes_size, department_id,  Hospital_id)
  VALUES
 ('John', 'Doe', '1234567890', 'john.doe@gmail.com', 30, 'Doctor', 'M', 11, 1),
 ('Jane', 'Smith', '9876543210', 'jane.smith@gmail.com', 35, 'Nurse', 'XL', 5, 1),
@@ -108,18 +107,18 @@ Values('Cardiology','9876543210', '1'),
 ('William', 'Jones', '9998887777', 'william.jones@yahoo.com', 31, 'Psychiatrist', 'XL', 10, 7);
 
 -- Inserting Data into Staff_member without phone number
- Insert into Staff_member ( FirstName, LastName, age, Role, clothes_size, department_id,  Hospital_id)
+ INSERT INTO Staff_member ( FirstName, LastName, age, Role, clothes_size, department_id,  Hospital_id)
  VALUES
  ('Jessica', 'Anderson', 'jessica.anderson@yahoo.com', 27, 'Cardiologist', 'S', 5, 6),
  ('Alice', 'Johnson', 'alice.johnson@gmail.com', 33, 'Neurologist', 'M', 12, 1);
  
 -- Update the professions
- update Staff_member
- set role = 'Nurse'
- Where staff_id IN (15,20);
+ UPDATE Staff_member
+ SET role = 'Nurse'
+ WHERE staff_id IN (15,20);
  
 --  Insert into Shift_type ( name, Start_time, End_time, Hospital_id)
- Insert into Shift_type ( name, Start_time, End_time, Hospital_id)
+ INSERT INTO Shift_type ( name, Start_time, End_time, Hospital_id)
  VALUES
 ('Early Shift', '07:45:00', '16:15:00',1 ),
 ('Early Shift', '07:45:00', '16:15:00', 6 ),
@@ -131,12 +130,9 @@ Values('Cardiology','9876543210', '1'),
 ('Late Shift', '15:15:00',  '23:45:00', 6 ),
 ('Late Shift', '15:15:00',  '23:45:00', 7 );
 
--- Deleting shifts that are night or late in hospital 1
-Delete from shift_type where (name = 'Night shift' OR name = 'late shift') and Hospital_id = 1;
-
 -- Insert Data for Staff_Schedule(hours_worked, Shift_date,staff_id, shift_type_id)
 
-Insert into Staff_Schedule (hours_worked, Shift_date,staff_id, shift_type_id)
+INSERT INTO Staff_Schedule (hours_worked, Shift_date,staff_id, shift_type_id)
 VALUES
 (8.5, '2024-03-27', 11, 1),
 (8.5, '2024-03-25', 12, 1),
@@ -167,5 +163,35 @@ VALUES
 (8.5, '2024-03-27', 24, 8),
 (10.0, '2024-03-27', 16, 6);
 
+-- Updating Staff members last names and email address- realised I created a mistake
+UPDATE Staff_member 
+SET 
+    LastName = CASE
+        WHEN Staff_id = 11 THEN 'García'
+        WHEN Staff_id = 12 THEN 'Dubois'
+        WHEN Staff_id = 13 THEN 'Ivanov'
+        WHEN Staff_id = 14 THEN 'Romano'
+        WHEN Staff_id = 15 THEN 'Choi'
+        WHEN Staff_id = 16 THEN 'Tanaka'
+        WHEN Staff_id = 17 THEN 'Ahmed'
+        WHEN Staff_id = 18 THEN 'Schneider'
+        WHEN Staff_id = 19 THEN 'Wang'
+        WHEN Staff_id = 20 THEN 'Kumar'
+    END,
+    Email_address = CASE
+        WHEN Staff_id = 11 THEN 'john.García@gmail.com'
+        WHEN Staff_id = 12 THEN 'jane.Dubois@gmail.com'
+        WHEN Staff_id = 13 THEN 'michael.Ivanov@yahoo.com'
+        WHEN Staff_id = 14 THEN 'emily.romano@yahoo.com'
+        WHEN Staff_id = 15 THEN 'david.Choi@gmail.com'
+        WHEN Staff_id = 16 THEN 'sarah.Tanaka@yahoo.com'
+        WHEN Staff_id = 17 THEN 'matthew.Ahmed@gmail.com'
+        WHEN Staff_id = 18 THEN 'robert.schneider@gmail.com'
+        WHEN Staff_id = 19 THEN 'emma.wang@yahoo.com'
+        WHEN Staff_id = 20 THEN 'william.kumar@yahoo.com'
+    END
+WHERE
+    Staff_id BETWEEN 11 AND 20;
+
 -- had to delete the info in staff schedule as I had made a decimal mistake
- delete from staff_schedule;
+ DELETE FROM Staff_schedule;
