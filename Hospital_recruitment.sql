@@ -1,6 +1,6 @@
 -- The Scenario
--- This is a hospital recruitment database of a local trust, consisting of 3 hospitals(if I have time). 
--- This will be focusing specifically on the Staff Members, Department, Shift-Time, Shift Schedule and Hospital(if i have time)
+-- This is a hospital recruitment database of a local trust, consisting of 3 hospitals
+-- This will be focusing specifically on the Staff Members, Department, Shift-Time, Shift Schedule and Hospital
 -- One hospital can have many departments
 
 CREATE DATABASE hospital_recruitment;
