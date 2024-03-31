@@ -27,7 +27,8 @@ WHERE h.Name = 'Good Health Hospital';
 SELECT d.name AS department_name, d.phone_number, h.name AS Hospital_name
  FROM Department d
  LEFT JOIN Hospital h ON d.hospital_id = h.hospital_id
- WHERE d.phone_number IS NULL;
+ WHERE d.phone_number IS NULL
+ ORDER BY d.name;
 
 Delimiter //
 CREATE PROCEDURE GetStaffCountByDepartment()
