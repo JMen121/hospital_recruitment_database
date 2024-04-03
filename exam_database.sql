@@ -69,3 +69,9 @@ inner join exams e
 on r.exam_id = e.exam_id
 where exam_name = 'Algorithms';
 
+-- Find the average mark for the "Cyber Security" exam.
+select AVg(r.mark), e.exam_name
+from exams e
+inner join results r
+on r.exam_id = e.exam_id
+where exam_name = 'Cyber Security';
